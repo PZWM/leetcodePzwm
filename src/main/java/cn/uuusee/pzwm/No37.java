@@ -311,7 +311,7 @@ public class No37 extends JFrame {
         System.out.println((new Date().getTime() - date.getTime()) / 1000 + "秒");
     }
 
-    private void print(char[][] board) {
+    void print(char[][] board) {
         StringBuilder sb = new StringBuilder();
         sb.append("<html><table>");
         for (char[] c : board
