@@ -56,6 +56,7 @@ public class No37A extends JFrame {
     }
 
     public void placeNextNumbers(int row, int col) {
+        print();
     /*
     Call backtrack function in recursion
     to continue to place numbers
@@ -86,7 +87,6 @@ public class No37A extends JFrame {
             for (int d = 1; d < 10; d++) {
                 if (couldPlace(d, row, col)) {
                     placeNumber(d, row, col);
-                    print();
                     placeNextNumbers(row, col);
                     // if sudoku is solved, there is no need to backtrack
                     // since the single unique solution is promised
@@ -134,13 +134,13 @@ public class No37A extends JFrame {
         for (char[] c : board
         ) {
             sb.append("<tr>");
-            System.out.print("|");
+//            System.out.print("|");
             for (char a : c
             ) {
-                System.out.print(a + "|");
+//                System.out.print(a + "|");
                 sb.append("<td>" + a + "</td>");
             }
-            System.out.println("");
+//            System.out.println("");
             sb.append("</tr>");
         }
         sb.append("</table></html>");
