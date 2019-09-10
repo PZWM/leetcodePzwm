@@ -8,9 +8,9 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * 官方答案，这里添加了可视化界面方便查看
+ * 官方答案，这里尝试优化
  */
-public class No37A extends JFrame {
+public class No37B {
     // box size
     int n = 3;
     // row size
@@ -86,7 +86,6 @@ public class No37A extends JFrame {
             for (int d = 1; d < 10; d++) {
                 if (couldPlace(d, row, col)) {
                     placeNumber(d, row, col);
-                    print();
                     placeNextNumbers(row, col);
                     // if sudoku is solved, there is no need to backtrack
                     // since the single unique solution is promised
@@ -113,53 +112,4 @@ public class No37A extends JFrame {
         backtrack(0, 0);
     }
 
-    public static void main(String[] args) throws Exception {
-        String input = "[[\".\",\".\",\"9\",\"7\",\"4\",\"8\",\".\",\".\",\".\"],[\"7\",\".\",\".\",\".\",\".\",\".\",\".\",\".\",\".\"],[\".\",\"2\",\".\",\"1\",\".\",\"9\",\".\",\".\",\".\"],[\".\",\".\",\"7\",\".\",\".\",\".\",\"2\",\"4\",\".\"],[\".\",\"6\",\"4\",\".\",\"1\",\".\",\"5\",\"9\",\".\"],[\".\",\"9\",\"8\",\".\",\".\",\".\",\"3\",\".\",\".\"],[\".\",\".\",\".\",\"8\",\".\",\"3\",\".\",\"2\",\".\"],[\".\",\".\",\".\",\".\",\".\",\".\",\".\",\".\",\"6\"],[\".\",\".\",\".\",\"2\",\"7\",\"5\",\"9\",\".\",\".\"]]";
-        List<char[]> l = JSON.parseArray(input, char[].class);
-        char[][] board1 = new char[9][9];
-        l.toArray(board1);
-        No37 no37 = new No37();
-        no37.print(board1);
-        No37A no37A = new No37A();
-        Date date = new Date();
-        no37A.solveSudoku(board1);
-        System.out.println("----------------------------------------------------");
-        no37A.print();
-        System.out.println((new Date().getTime() - date.getTime()) / 1000 + "秒");
-    }
-
-    private void print() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("<html><table>");
-        for (char[] c : board
-        ) {
-            sb.append("<tr>");
-            System.out.print("|");
-            for (char a : c
-            ) {
-                System.out.print(a + "|");
-                sb.append("<td>" + a + "</td>");
-            }
-            System.out.println("");
-            sb.append("</tr>");
-        }
-        sb.append("</table></html>");
-        displayArea.setText(sb.toString());
-    }
-
-    private JLabel displayArea = new JLabel();
-
-    public No37A() {
-        displayArea.setBounds(200, 200, 500, 500);
-        this.add(displayArea);
-
-        this.setLayout(new GridLayout(4, 1)); //选择GridLayout布局管理器
-        this.setTitle("数独解法");
-        this.setSize(500, 500);
-        this.setLocation(400, 200);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //设置当关闭窗口时，保证JVM也退出
-        this.setVisible(true);
-        this.setResizable(true);
-
-    }
 }
