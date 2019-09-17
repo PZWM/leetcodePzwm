@@ -37,17 +37,107 @@ public class No190 {
     * */
     // you need treat n as an unsigned value
     public int reverseBits(int n) {
-        return Integer.reverse(n);
+        return reverse(n);
     }
 
-    public static int reverse(int i) {
-        // HD, Figure 7-1
+    public  int reverse(int i) {
+        //将32位二进制位以8位为一个单元编号1-8
+
+        //16进制5的二进制0101
+        //前半段取2、4、6、8位，直接左移一位，用2468替换1357位
+        //后半段直接右移一位，并取2468位。
+        //以8位为一个单元，现在编号依据原位置变成21436587
         i = (i & 0x55555555) << 1 | (i >>> 1) & 0x55555555;
+
+
+        //16进制3的二进制表现形式是0011
+        //该计算后43218765
         i = (i & 0x33333333) << 2 | (i >>> 2) & 0x33333333;
+
+        //16进制f的二进制表现形式为1111
+        //计算得出87654321
         i = (i & 0x0f0f0f0f) << 4 | (i >>> 4) & 0x0f0f0f0f;
-        i = (i << 24) | ((i & 0xff00) << 8) |
-                ((i >>> 8) & 0xff00) | (i >>> 24);
-        return i;
+        return reverseBytes(i);
     }
+
+    public  int reverseBytes(int i) {
+       /* i>>>24右移24位，前8位变成后8位（1-8变成24-32）
+        i右移8位 并& 0xff00取32位中16-24位（8-16变16-24）
+        i左移8位，并取8-16位（16-24变8-16）
+        i左移24位(24-32变1-8)*/
+        return ((i >>> 24)           ) |
+                ((i >>   8) &   0xFF00) |
+                ((i <<   8) & 0xFF0000) |
+                ((i << 24));
+    }
+
+    public static void main(String[] args) {
+        System.out.println(change("0x55555555", 16, 2));
+    }
+
+
+    static StringBuffer buffer = new StringBuffer();
+
+    static String change(String value, int f, int t) {
+
+        int sum = 0;
+
+        char[] cs = value.toCharArray();
+
+        for (int i = 0; i < cs.length; i++) {
+
+            int c = (int) cs[i];
+
+            int b = cs.length - i - 1;
+
+            if (64 < c && c < 91) {
+
+                sum += (c - 65 + 10) * Math.pow(f, b);
+
+            } else if (c > 91) {
+
+                sum += (c - 97 + 37) * Math.pow(f, b);
+
+            } else if (c == '+') {
+
+                sum += 63 * Math.pow(f, b);
+
+            } else if (c == '/') {
+
+                sum += 64 * Math.pow(f, b);
+
+            } else {
+
+                sum += (c - 48) * Math.pow(f, b);
+
+            }
+
+        }
+
+        while (sum >= t) {
+
+            buffer.append(sum % t);
+
+            sum /= t;
+
+        }
+
+        buffer.append(sum);
+        String result = buffer.reverse().toString();
+        destroyBuffer();
+        return result;
+
+    }
+
+    /**
+     * 释放内存
+     */
+
+    static void destroyBuffer() {
+
+        buffer.delete(0, buffer.length());
+
+    }
+
 
 }
