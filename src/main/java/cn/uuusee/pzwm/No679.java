@@ -24,9 +24,24 @@ public class No679 {
      * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
      */
 }
-
+//TODO 未完成
 class Solution679 {
+
+    char[] chars=new char[7];
+
     public boolean judgePoint24(int[] nums) {
+        int[] marker=new  int[nums.length];
+
         return true;
     }
 }
+//
+//class Fraction {
+//    Fraction numerator;
+//    Fraction denominator;
+//
+//    Fraction(int num,int den){
+//        numerator=num;
+//        denominator=den;
+//    }
+//}
