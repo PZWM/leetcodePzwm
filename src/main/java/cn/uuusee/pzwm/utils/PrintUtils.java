@@ -30,4 +30,15 @@ public class PrintUtils {
             System.out.print(l.val);
         }
     }
+
+    public static void printMatrixArray(int[][] arr){
+        for (int[] ii: arr
+             ) {
+            for (int i:ii
+                 ) {
+                System.out.print(i);
+            }
+            System.out.println("");
+        }
+    }
 }

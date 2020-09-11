@@ -118,8 +118,8 @@ public class No37A extends JFrame {
         List<char[]> l = JSON.parseArray(input, char[].class);
         char[][] board1 = new char[9][9];
         l.toArray(board1);
-        No37 no37 = new No37();
-        no37.print(board1);
+//        No37 no37 = new No37();
+//        no37.print(board1);
         No37A no37A = new No37A();
         Date date = new Date();
         no37A.solveSudoku(board1);
