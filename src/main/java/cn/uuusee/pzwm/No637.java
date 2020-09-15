@@ -30,47 +30,54 @@ import java.util.*;
  * 来源：力扣（LeetCode）
  * 链接：https://leetcode-cn.com/problems/average-of-levels-in-binary-tree
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
- *
- *
- *
- *这个题太简单了，又是周末，只求做对ba
+ * <p>
+ * <p>
+ * <p>
+ * 这个题太简单了，又是周末，只求做对ba
  */
 //TODO
 public class No637 {
     public List<Double> averageOfLevels(TreeNode root) {
         List<Double> list = new ArrayList<>();
-        Map<Integer,List<Integer>> integers = new HashMap<>();
-        if (root.left != null)
-            recordV(root,0, integers);
-        Double a = -1.0;
-        int index=0;
-        while (integers.get(index)!=null) {
-            Double total=0.0;
+        Map<Integer, List<Integer>> integers = new HashMap<>();
+        List<Integer> temp = new ArrayList<>();
+        temp.add(root.val);
+        integers.put(0, temp);
+        if (root.left != null||root.right!=null)
+            recordV(root, 1, integers);
+        int index = 0;
+        while (integers.get(index) != null) {
+            Double total = 0.0;
             for (int i : integers.get(index)
             ) {
-                    total+=i;
+                total += i;
             }
-            list.add(total/integers.get(index).size());
+            list.add(total / integers.get(index).size());
             index++;
         }
         PrintUtils.printList(list);
         return list;
     }
 
-    void recordV(TreeNode treeNode,int index, Map<Integer,List<Integer>> integers) {
-        if (treeNode.left != null)
-            integers.getOrDefault(index,new ArrayList<>()).add(treeNode.left.val);
-        if (treeNode.right != null)
-            integers.getOrDefault(index,new ArrayList<>()).add(treeNode.right.val);
-
+    void recordV(TreeNode treeNode, int index, Map<Integer, List<Integer>> integers) {
+        if (treeNode.left != null) {
+            List<Integer> temp = integers.getOrDefault(index, new ArrayList<>());
+            temp.add(treeNode.left.val);
+            integers.put(index, temp);
+        }
+        if (treeNode.right != null) {
+            List<Integer> temp = integers.getOrDefault(index, new ArrayList<>());
+            temp.add(treeNode.right.val);
+            integers.put(index, temp);
+        }
         if (treeNode.left != null)
             if (treeNode.left.left != null || treeNode.left.right != null) {
-                recordV(treeNode.left,index+1, integers);
+                recordV(treeNode.left, index + 1, integers);
             }
 
         if (treeNode.right != null)
-            if (treeNode.right.right != null || treeNode.left.right != null) {
-                recordV(treeNode.right,index+1, integers);
+            if (treeNode.right.left != null || treeNode.right.right != null) {
+                recordV(treeNode.right, index + 1, integers);
             }
     }
 }
