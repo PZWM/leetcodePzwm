@@ -41,7 +41,6 @@ import java.util.Map;
  * 链接：https://leetcode-cn.com/problems/redundant-connection-ii
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
-//TODO 确实很难
 public class No685 {
 
     public int[] findRedundantDirectedConnection(int[][] edges) {
@@ -69,9 +68,7 @@ public class No685 {
                 //向上走路过了自己，直接能够确定是当前父级是该被删除的
                 Node my = entry.getValue();
                 Node root1 = my.father.get(0);
-                int i1 = 0, i2 = 0;
                 while (true) {
-                    i1++;
                     if (root1.equals(my))
                         return new int[]{my.father.get(0).val, my.val};
                     if (root1.father.size() > 0)
@@ -81,7 +78,6 @@ public class No685 {
                 }
                 Node root2 = my.father.get(1);
                 while (true) {
-                    i2++;
                     if (root2.equals(my))
                         return new int[]{my.father.get(1).val, my.val};
                     if (root2.father.size() > 0)
@@ -89,27 +85,15 @@ public class No685 {
                     else
                         break;
                 }
+                List<String> list = new ArrayList<>();
+                list.add(my.val + "," + my.father.get(0).val);
+                list.add(my.val + "," + my.father.get(1).val);
 
-                //如果向上走根节点为同一个，删除路径短的，因为存在跳过了某些节点。
-                //也可能存在某一个父级指向另一个父级，这种情况是删除任意都可以
-                if(i1==i2|| (my.father.get(0).father.size()>0&& my.father.get(0).father.get(0)==my.father.get(1))|| (my.father.get(1).father.size()>0&& my.father.get(1).father.get(0)==my.father.get(0))){
-
-                    //TODO 还需要考虑是不是没有跳过而是重复了某些节点
-                    List<String> list = new ArrayList<>();
-                    list.add(my.val+","+my.father.get(0).val);
-                    list.add(my.val+","+my.father.get(1).val);
-
-                    for (int i = edges.length - 1; i > -1; i--) {
-                        if (list.contains(edges[i][1]+","+edges[i][0])) {
-                            return edges[i];
-                        }
+                for (int i = edges.length - 1; i > -1; i--) {
+                    if (list.contains(edges[i][1] + "," + edges[i][0])) {
+                        return edges[i];
                     }
-
                 }
-                if (i1 > i2) {
-                    return new int[]{my.father.get(1).val, my.val};
-                }
-                return new int[]{my.father.get(0).val, my.val};
             }
         }
 
