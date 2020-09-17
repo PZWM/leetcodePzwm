@@ -35,7 +35,6 @@ import java.util.*;
  * <p>
  * 这个题太简单了，又是周末，只求做对ba
  */
-//TODO
 public class No637 {
     public List<Double> averageOfLevels(TreeNode root) {
         List<Double> list = new ArrayList<>();
