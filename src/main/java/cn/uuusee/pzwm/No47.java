@@ -69,6 +69,7 @@ public class No47 {
         for (int j = 0; j < left.length; j++) {
             if (i == left[j]) {
                 //呃，这里有点奇怪，不应该这么写，不过为了快速通过每日一题，这样能过
+                //实际上用一个新的boolean数组记录即可
                 left[j] = -10000;
                 return true;
             }
