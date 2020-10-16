@@ -1,5 +1,6 @@
 package cn.uuusee.pzwm;
 
+import cn.uuusee.pzwm.structure.TreeNode;
 import org.testng.annotations.DataProvider;
 
 import java.util.ArrayList;
@@ -66,15 +67,5 @@ public class No94 {
     private Object[][] init(){
 
         return new Object[0][];
-    }
-}
-
-class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
-
-    TreeNode(int x) {
-        val = x;
     }
 }

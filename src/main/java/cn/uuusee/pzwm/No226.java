@@ -1,5 +1,7 @@
 package cn.uuusee.pzwm;
 
+import cn.uuusee.pzwm.structure.TreeNode;
+
 /**
  * 翻转一棵二叉树。
  */
