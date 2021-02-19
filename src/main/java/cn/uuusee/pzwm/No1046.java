@@ -1,5 +1,7 @@
 package cn.uuusee.pzwm;
 
+import java.util.Arrays;
+
 /**
  * 有一堆石头，每块石头的重量都是正整数。
  * <p>
@@ -68,5 +70,24 @@ public class No1046 {
             a1 = -1;
             b1 = -1;
         }
+    }
+
+    /**
+     * 思路2 ，先整个数据排序后，按照顺序去打磨石头即可。
+     * 思路错误，这种情况当数组内的数字没有足够小时，会出现最后的石头尺寸输出不对的情况
+     *
+     * @param stones
+     * @return
+     */
+    public int lastStoneWeight2(int[] stones) {
+        Arrays.sort(stones);
+        int c = 0;
+        for (int x = stones.length - 1; x > -1; x--) {
+            c = Math.abs(c - stones[x]);
+            if (x == 0) {
+                return c;
+            }
+        }
+        return 0;
     }
 }
