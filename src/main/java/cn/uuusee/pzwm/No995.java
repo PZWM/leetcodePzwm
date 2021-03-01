@@ -1,5 +1,7 @@
 package cn.uuusee.pzwm;
 
+import java.util.Hashtable;
+
 /**
  * 在仅包含 0 和 1 的数组 A 中，一次 K 位翻转包括选择一个长度为 K 的（连续）子数组，同时将子数组中的每个 0 更改为 1，而每个 1 更改为 0。
  * <p>
@@ -103,7 +105,6 @@ public class No995 {
         return re;
 
     }
-
 
     public int minKBitFlips(int[] A, int K) {
         int n = A.length;

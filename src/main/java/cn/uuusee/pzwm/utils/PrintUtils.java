@@ -36,7 +36,7 @@ public class PrintUtils {
              ) {
             for (int i:ii
                  ) {
-                System.out.print(i);
+                System.out.print(" "+i+" ");
             }
             System.out.println("");
         }
