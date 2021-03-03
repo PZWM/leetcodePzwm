@@ -2,6 +2,7 @@ package cn.uuusee.pzwm.utils;
 
 import cn.uuusee.pzwm.structure.ListNode;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class PrintUtils {
@@ -40,5 +41,8 @@ public class PrintUtils {
             }
             System.out.println("");
         }
+    }
+    public static void printArray(int[] arr){
+                System.out.print(Arrays.toString(arr));
     }
 }
